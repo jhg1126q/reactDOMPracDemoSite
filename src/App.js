@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "./components/UI/Button/Button";
 
 import "./App.css";
@@ -20,11 +20,12 @@ function App() {
     }
   };
 
-  //useCallBack(() => {
-  //   if (allowToggle) {
-  //     setTestParam((testParam) => !testParam);
-  //   }
-  // }, [allowToggle]);
+  useCallback(() => {
+    console.log("useCallback 함수");
+    if (allowToggle) {
+      setTestParam((testParam) => !testParam);
+    }
+  }, [allowToggle]);
 
   const toggleAllowHandler = () => {
     setAllowToggle(true);
@@ -32,9 +33,8 @@ function App() {
 
   useEffect(() => {
     setTestParam(true);
+    console.log("useEffect 함수");
   }, []);
-
-  //{testParam && <p>Test Param is here</p>}
 
   return (
     <div className="app">
